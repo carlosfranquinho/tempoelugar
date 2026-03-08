@@ -1,0 +1,17 @@
+---
+layout: base.njk
+title: "Todas as Aventuras"
+description: "Todas as viagens no tempo de Jorge Corvina — do paleolítico ao ano 2215."
+---
+
+<section class="archive-section">
+  <div class="container">
+    <h1 class="archive-title">Todas as Aventuras</h1>
+    <div class="posts-grid">
+      {% for post in collections.posts %}
+        {% set post = post %}
+        {% include "partials/post-card.njk" %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

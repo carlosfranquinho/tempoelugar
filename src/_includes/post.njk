@@ -1,0 +1,69 @@
+---
+layout: base.njk
+---
+<article class="post-single">
+  <div class="container">
+
+    {% if breadcrumb != false %}
+    <nav class="breadcrumb" aria-label="Localização na página">
+      <ol>
+        <li><a href="/">Início</a></li>
+        <li><a href="/aventuras/">Aventuras</a></li>
+        <li aria-current="page">{{ title }}</li>
+      </ol>
+    </nav>
+    {% endif %}
+
+    <header class="post-header">
+      <h1 class="post-title">{{ title }}</h1>
+      <div class="post-meta">
+        <time datetime="{{ date | isoDate }}">{{ date | ptDate }}</time>
+        <span class="post-author">por <a href="/jorge-corvina/">{{ site.author }}</a></span>
+        {% if categories %}
+        <span class="post-categories">
+          {% for cat in categories %}
+          <a href="/categoria/{{ cat | slug }}/">{{ cat }}</a>{% if not loop.last %}, {% endif %}
+          {% endfor %}
+        </span>
+        {% endif %}
+      </div>
+    </header>
+
+    {% if featuredImage %}
+    <figure class="post-featured-image">
+      <img src="{{ featuredImage }}" alt="{{ featuredImageAlt or title }}" loading="eager" decoding="async">
+    </figure>
+    {% endif %}
+
+    <div class="post-content">
+      {{ content | safe }}
+    </div>
+
+    <nav class="post-navigation" aria-label="Navegação entre posts">
+      {% set posts = collections.posts %}
+      {% set currentIndex = 0 %}
+      {% for p in posts %}
+        {% if p.url == page.url %}{% set currentIndex = loop.index0 %}{% endif %}
+      {% endfor %}
+
+      {% set prevPost = posts[currentIndex + 1] %}
+      {% set nextPost = posts[currentIndex - 1] %}
+
+      <div class="nav-links">
+        {% if prevPost %}
+        <a href="{{ prevPost.url }}" class="nav-prev" rel="prev">
+          <span class="nav-label">← Post anterior</span>
+          <span class="nav-title">{{ prevPost.data.title }}</span>
+        </a>
+        {% endif %}
+        {% if nextPost and currentIndex > 0 %}
+        <a href="{{ nextPost.url }}" class="nav-next" rel="next">
+          <span class="nav-label">Próximo post →</span>
+          <span class="nav-title">{{ nextPost.data.title }}</span>
+        </a>
+        {% endif %}
+      </div>
+    </nav>
+
+  </div>
+</article>

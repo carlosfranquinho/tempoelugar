@@ -1,0 +1,38 @@
+---
+layout: base.njk
+title: "Tempo e Lugar"
+description: "Bem-vindo ao Tempo e Lugar, o destino para os amantes de aventuras através das eras. Explore a história, viaje através dos séculos e descubra um universo de possibilidades."
+---
+
+<section class="hero">
+  <div class="container">
+    <h1 class="hero-title">TEMPO E LUGAR</h1>
+    <p class="hero-tagline">destinos através das eras</p>
+    <a href="/aventuras/" class="hero-cta">Explorar</a>
+  </div>
+</section>
+
+<section class="about-strip">
+  <div class="container">
+    <img src="/assets/images/corvina.jpg" alt="Jorge Corvina" width="100" height="100" class="about-strip-avatar" loading="lazy">
+    <div>
+      <h2><a href="/jorge-corvina/">Quem sou?</a></h2>
+      <p>Aqui vos deixo, viajantes, um pequeno ensaio sobre a minha modesta pessoa. Jorge Corvina, ao vosso dispor.</p>
+    </div>
+  </div>
+</section>
+
+<section class="posts-section">
+  <div class="container">
+    <h2>Aventuras recentes</h2>
+    <div class="posts-grid">
+      {% for post in collections.posts | limit(6) %}
+        {% set post = post %}
+        {% include "partials/post-card.njk" %}
+      {% endfor %}
+    </div>
+    <p style="margin-top:2rem; text-align:center;">
+      <a href="/aventuras/" class="hero-cta" style="display:inline-block;">Ver todas as aventuras →</a>
+    </p>
+  </div>
+</section>

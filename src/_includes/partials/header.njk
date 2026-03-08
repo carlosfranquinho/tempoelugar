@@ -1,0 +1,21 @@
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <div class="site-branding">
+      <a href="/" class="logo-link" aria-label="{{ site.title }} - Página inicial">
+        <img src="/assets/images/banner300.png" alt="{{ site.title }}" width="350" height="105" class="site-logo">
+      </a>
+    </div>
+
+    <button class="menu-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Abrir menu">
+      <span class="menu-icon"></span>
+    </button>
+
+    <nav id="primary-nav" class="primary-nav" aria-label="Navegação principal" role="navigation">
+      <ul class="nav-list">
+        <li><a href="/jorge-corvina/" {% if page.url == '/jorge-corvina/' %}aria-current="page"{% endif %}>O autor</a></li>
+        <li><a href="/maquina-do-tempo/" {% if page.url == '/maquina-do-tempo/' %}aria-current="page"{% endif %}>A máquina</a></li>
+        <li><a href="/contact/" {% if page.url == '/contact/' %}aria-current="page"{% endif %}>Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
