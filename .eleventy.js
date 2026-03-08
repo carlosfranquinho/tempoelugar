@@ -15,6 +15,27 @@ module.exports = function (eleventyConfig) {
       .sort((a, b) => b.date - a.date);
   });
 
+  // All unique categories across posts
+  eleventyConfig.addCollection("categories", function (collectionApi) {
+    const posts = collectionApi.getFilteredByGlob("src/posts/*.md");
+    const categoriesMap = new Map();
+    for (const post of posts) {
+      for (const cat of post.data.categories || []) {
+        if (!categoriesMap.has(cat)) {
+          categoriesMap.set(cat, []);
+        }
+        categoriesMap.get(cat).push(post);
+      }
+    }
+    // Return array of { name, slug, posts } sorted by name
+    const slugify = (s) => s.toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+    return Array.from(categoriesMap.entries())
+      .map(([name, posts]) => ({ name, slug: slugify(name), posts: posts.sort((a, b) => b.date - a.date) }))
+      .sort((a, b) => a.name.localeCompare(b.name, "pt"));
+  });
+
   // Date filter in Portuguese
   eleventyConfig.addFilter("ptDate", function (date) {
     return new Date(date).toLocaleDateString("pt-PT", {
@@ -37,6 +58,13 @@ module.exports = function (eleventyConfig) {
   // Absolute URL filter
   eleventyConfig.addFilter("absoluteUrl", function (url, base) {
     return new URL(url, base).href;
+  });
+
+  // Slug filter (remove accents, lowercase, hyphenate)
+  eleventyConfig.addFilter("slug", function (str) {
+    return str.toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
   });
 
   return {

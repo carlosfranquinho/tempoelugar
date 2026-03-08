@@ -1,0 +1,23 @@
+---
+layout: base.njk
+pagination:
+  data: collections.categories
+  size: 1
+  alias: cat
+permalink: /categoria/{{ cat.slug }}/
+eleventyComputed:
+  title: "Categoria: {{ cat.name }}"
+  description: "Todas as aventuras de Jorge Corvina na categoria {{ cat.name }}."
+---
+
+<section class="archive-section">
+  <div class="container">
+    <h1 class="archive-title">{{ cat.name }}</h1>
+    <div class="posts-grid">
+      {% for post in cat.posts %}
+        {% set post = post %}
+        {% include "partials/post-card.njk" %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
