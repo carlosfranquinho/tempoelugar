@@ -13,6 +13,7 @@
   --color-border: #e5e5e5;
   --color-accent: #4169e1;
   --font-body: "Karla", sans-serif;
+  --font-serif: "EB Garamond", Georgia, serif;
   --max-width: 1100px;
   --max-width-content: 760px;
   --radius: 4px;
@@ -440,6 +441,7 @@ hr {
 }
 
 .post-title {
+  font-family: var(--font-serif);
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   margin-bottom: 0.5rem;
   color: var(--color-text-dark);
@@ -485,10 +487,12 @@ hr {
 
 /* Post content */
 .post-content {
-  font-size: 1.05rem;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
 }
 
 .post-content h2 {
+  font-family: var(--font-serif);
   font-size: 1.5rem;
   margin-top: 2em;
   margin-bottom: 0.75em;
@@ -497,6 +501,7 @@ hr {
 }
 
 .post-content h3 {
+  font-family: var(--font-serif);
   font-size: 1.2rem;
   margin-top: 1.75em;
 }
@@ -587,6 +592,7 @@ hr {
 }
 
 .page-title {
+  font-family: var(--font-serif);
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
@@ -594,7 +600,8 @@ hr {
 }
 
 .page-content {
-  font-size: 1.05rem;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
 }
 
 .page-content img {
